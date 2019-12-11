@@ -4,6 +4,7 @@ import * as io from '@actions/io';
 
 import { FormatType, SecretParser } from 'actions-secret-parser';
 
+const AZURE_HTTP_USER_AGENT: string = 'python/3.6.4 msrest_azure/0.5.0 azure-mgmt-web/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.47 GITHUBACTIONS_MyAzure Loginv2_bcstestit/cli';
 var azPath: string;
 
 async function main() {
@@ -24,10 +25,9 @@ async function main() {
         await executeAzCliCommand(`login --service-principal -u "${servicePrincipalId}" -p "${servicePrincipalKey}" --tenant "${tenantId}"`);
         await executeAzCliCommand(`account set --subscription "${subscriptionId}"`);
         console.log("Setting user agent");
-        const AZURE_HTTP_USER_AGENT: string = 'python/3.6.4 msrest_azure/0.5.0 azure-mgmt-web/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.47 GITHUBACTIONS_MyAzure Loginv2_bcstestit/cli';
-        core.exportVariable('AZURE_HTTP_USER_AGENT', 'python/3.6.4 msrest_azure/0.5.0 azure-mgmt-web/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.47 GITHUBACTIONS_MyAzure CLI_bcstestit/cli');
+        core.exportVariable('AZURE_HTTP_USER_AGENT', 'python/3.6.4 msrest_azure/0.5.0 azure-mgmt-web/0.40.0 Azure-SDK-For-Python AZURECLI/2.0.47 GITHUBACTIONS_MyAzure Login_bcstestit/cli');
         console.log("${AZURE_HTTP_USER_AGENT}");
-        console.log("Login successful.");    
+        console.log("Login successful. V2");    
     } catch (error) {
         console.log("Login failed. Please check the credentials.");
         core.setFailed(error);
